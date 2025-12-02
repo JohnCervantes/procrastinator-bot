@@ -1,0 +1,47 @@
+# Byte-compiled / optimized / compiled files
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+*.egg-info/
+.eggs/
+
+# Distribution / packaging
+dist/
+build/
+*.egg
+*.whl
+
+# Virtual environment
+venv/
+.venv/
+env/
+.env/
+.env
+bot-env/
+.bot-env
+
+# Editor/IDE files
+.idea/
+.vscode/
+*.swp
+*.bak
+*~
+.DS_Store # macOS specific
+
+# Test and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.nox/
+
+# Logs and databases
+*.log
+*.sqlite3
+*.db
+
+# Jupyter Notebook specific
+.ipynb_checkpoints/
+
+# Miscellaneous
+.history/
