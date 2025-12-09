@@ -35,10 +35,13 @@ async def on_message(message):
         await channel.send(prev[user_id]["last message"]["content"])
         
 
-    if message.channel.id == CHANNEL_ID:
-        save_data(message, progress=True)
-        if message.content.startswith("$"):
-            await message.channel.send(message.content)
+    if message.channel.id == CHANNEL_ID: #only save messages for specified channel
+        if "daily progress" in message.content: #simple logic
+            print("Found!")
+            save_data(message, progress=True)
+        else:
+            print("Not Found!")
+            save_data(message)
 
 
 def load_data():
@@ -55,10 +58,9 @@ def save_data(message, progress=False):
     global data     
     ct = datetime.now()
     
-    data[str(message.author.id)] = {
-        "user name" : str(message.author.name),
-        "last message": {"time": ct.timestamp(), "content" : message.content}
-    }
+    data[str(message.author.id)]["last message"] = {"time": ct.timestamp(), "content" : message.content}
+        # "user name" : str(message.author.name)
+        
     if progress == True:
         data[str(message.author.id)]["progress"] = {
             "procrastinator" : False,
