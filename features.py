@@ -6,7 +6,10 @@ import os
 load_dotenv()
 
 intents = discord.Intents.default()
-intents.message_content = True
+intents.message_content = True # we can track events like on_message()
+intents.guild_reactions= True # track reaction events
+intents.guilds = True # track guild events like when someone jons or is removed/leaves
+intents.members = True #Assign roles to users
 
 #works similar to discord.Client
 bot = commands.Bot(command_prefix="!", intents=intents)
