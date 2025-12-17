@@ -3,7 +3,9 @@ import discord
 from dotenv import load_dotenv
 import os
 import json
-from datetime import datetime
+from datetime import datetime, timezone
+from classifier import ProgressClassifier
+classifier = ProgressClassifier()
 
 load_dotenv()
 
@@ -34,13 +36,11 @@ async def on_message(message):
         user_id = str(message.author.id)
         await channel.send(prev[user_id]["last message"]["content"])
         
-
     if message.channel.id == CHANNEL_ID: #only save messages for specified channel
-        if "daily progress" in message.content: #simple logic
-            save_data(message, progress=True)
-            await message.add_reaction("✅")
-        else:
-            save_data(message)
+        progress_status = classifier.classify_simple(message.content) #classify progress message
+        save_data(message, progress=progress_status)
+        if progress_status:
+            await message.add_reaction("✅") 
 
 
 def load_data():
