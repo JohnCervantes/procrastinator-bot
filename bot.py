@@ -48,8 +48,8 @@ async def hourly_check():
             tz=timezone.utc
         )
         difference = now-then
-        if difference.days >= 3: #inactive for 3 days or MORE
-            if role not in member.roles: #check if already has the role
+        if difference.days >= 3: # Inactive for 3 days or more
+            if role not in member.roles: # Check if already has the role
                 try:
                     await member.add_roles(role, reason="Not posted progress for 3 days")
                     await channel.send(f"{member.mention} you have been inactive") #send message pinging that member
