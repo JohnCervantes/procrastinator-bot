@@ -41,7 +41,7 @@ async def hourly_check():
     now = datetime.now(timezone.utc)
     log = load_data()
     for member in guild.members:
-        if not member.id == 979250158942421032:
+        if member.bot:
             continue
         then = datetime.fromtimestamp(
             log[str(member.id)]["last_message"]["time"],
